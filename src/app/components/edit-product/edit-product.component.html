@@ -1,0 +1,70 @@
+<div class="product-form-container">
+  <h2>✏️ Editar Producto</h2>
+
+  <form [formGroup]="form" (ngSubmit)="updateProduct()">
+    <!-- Código del Producto -->
+    <div class="form-group">
+      <label for="sku">Código del Producto:</label>
+      <input type="text" id="sku" formControlName="sku">
+      <small *ngIf="form.get('sku')?.invalid && form.get('sku')?.touched">
+        ⚠ Código es obligatorio.
+      </small>
+    </div>
+
+    <!-- Nombre del Producto -->
+    <div class="form-group">
+      <label for="name">Nombre del Producto:</label>
+      <input type="text" id="name" formControlName="name">
+      <small *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        ⚠ Nombre es obligatorio.
+      </small>
+    </div>
+
+    <!-- Descripción -->
+    <div class="form-group">
+      <label for="description">Descripción:</label>
+      <textarea id="description" formControlName="description" required></textarea>
+      <small *ngIf="form.get('description')?.invalid && form.get('description')?.touched">
+        ⚠ Descripción es obligatoria.
+      </small>
+    </div>
+
+    <!-- Precio -->
+    <div class="form-group">
+      <label for="price">Precio:</label>
+      <input type="number" id="price" formControlName="price" required>
+      <small *ngIf="form.get('price')?.invalid && form.get('price')?.touched">
+        ⚠ Precio mínimo de 1.
+      </small>
+    </div>
+
+    <!-- Stock -->
+    <div class="form-group">
+      <label for="quantity">Stock:</label>
+      <input type="number" id="quantity" formControlName="quantity" required>
+      <small *ngIf="form.get('quantity')?.invalid && form.get('quantity')?.touched">
+        ⚠ La cantidad debe ser mayor a 0.
+      </small>
+    </div>
+
+    <!-- Seleccionar Categoría -->
+    <div class="form-group">
+      <label for="category">Categoría:</label>
+      <select id="category" formControlName="category_id" required>
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+      <small *ngIf="form.get('category_id')?.invalid && form.get('category_id')?.touched">
+        ⚠ Selecciona una categoría.
+      </small>
+    </div>
+
+    <!-- Botones -->
+    <div class="button-group">
+      <button type="button" class="back-btn" (click)="goBack()">🔙 Volver</button>
+      <button type="submit" class="update-product-btn" [disabled]="form.invalid">✅ Actualizar Producto</button>
+    </div>
+  </form>
+</div>

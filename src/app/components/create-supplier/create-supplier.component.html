@@ -1,0 +1,44 @@
+<div class="product-form-container">
+    <h2>➕ Agregar Proveedor</h2>
+  
+    <form  [formGroup]="form" (ngSubmit)="addSuppliers()">
+ 
+      <label for="name">Nombre del Proveedor:</label>
+      <input type="text" id="name" formControlName="name">
+      <small *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        ⚠ Nombre es obligatorio.
+      </small>
+
+
+      <label for="phone">Telefono:</label>
+      <input type="text" id="phone" formControlName="phone">
+      <small *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">
+        ⚠ Telefono es obligatorio.
+      </small>
+
+      <label for="email">Correo:</label>
+      <input type="text" id="email" formControlName="email">
+      <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        ⚠ Correo es obligatorio.
+      </small>
+
+      <label for="address">Direccion:</label>
+      <input type="text" id="address" formControlName="address">
+      <small *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
+        ⚠ Dirrecion es obligatorio.
+      </small>
+
+      <label for="country">Pais:</label>
+      <input type="text" id="country" formControlName="country">
+      <small *ngIf="form.get('country')?.invalid && form.get('country')?.touched">
+        ⚠ Pais es obligatorio.
+      </small>
+
+      <!-- Botón Agregar Producto -->
+      <button type="submit" class="add-product-btn" [disabled]="form.invalid">✅ Guardar Producto</button>
+  
+      <!-- Botón Volver -->
+      <button type="button" class="back-btn" (click)="goBack()">🔙 Volver</button>
+    </form>
+  </div>
+  

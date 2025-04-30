@@ -1,0 +1,95 @@
+<div class="product-container">
+    <h1>📦 Historial de Salida</h1>
+  
+    <div class="actions">
+      <button class="add-product-btn" (click)="addPurchases()">
+        ➕ Agregar Registro de Salida
+      </button>
+    </div>
+  
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSourceSales">
+        <!-- Position Column -->
+        <ng-container matColumnDef="customer">
+          <th mat-header-cell *matHeaderCellDef>Cliente</th>
+          <td mat-cell *matCellDef="let element">{{ element.customer.name || 'no hay proveedor'}}</td>
+         </ng-container>
+  
+        <ng-container matColumnDef="transfer_type">
+          <th mat-header-cell *matHeaderCellDef>Tipo de transferencia</th>
+          <td mat-cell *matCellDef="let element">{{ element.transfer_type }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="document_type">
+          <th mat-header-cell *matHeaderCellDef>Tipo de Documento</th>
+          <td mat-cell *matCellDef="let element">{{ element.document_type }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="document_number">
+            <th mat-header-cell *matHeaderCellDef> Número de Documento</th>
+            <td mat-cell *matCellDef="let element">{{ element.document_number }}</td>
+          </ng-container>
+    
+
+        <ng-container matColumnDef="sale_date">
+          <th mat-header-cell *matHeaderCellDef>Fecha de Salida</th>
+          <td mat-cell *matCellDef="let element">{{ element.sale_date }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="product">
+          <th mat-header-cell *matHeaderCellDef>Producto</th>
+          <td mat-cell *matCellDef="let element">{{ element.product.name }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="sale_price">
+            <th mat-header-cell *matHeaderCellDef>Precio de Venta</th>
+            <td mat-cell *matCellDef="let element">${{ element.sale_price}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+            <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="subtotal">
+            <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+            <td mat-cell *matCellDef="let element">${{ element.subtotal }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="iva">
+            <th mat-header-cell *matHeaderCellDef>Iva</th>
+            <td mat-cell *matCellDef="let element">${{ element.iva }}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="total_price">
+            <th mat-header-cell *matHeaderCellDef>Precio Total</th>
+            <td mat-cell *matCellDef="let element">${{ element.total_price }}</td>
+          </ng-container>
+
+  
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <!-- <button class="edit-btn" (click)="editCustomers(element.id)">
+              ✏️ Editar
+            </button> -->
+            <button class="delete-btn" (click)="confirmDelete(element.id)">
+              🗑️ Eliminar
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+  
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+  

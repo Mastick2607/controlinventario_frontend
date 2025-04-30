@@ -1,0 +1,170 @@
+<div class="product-container">
+    <h1>📦 Historial de Movimientos</h1>
+  
+    <div class="actions">
+      <!-- <button class="add-product-btn" (click)="addPurchases()">
+        ➕ Agregar Registro de Ingreso
+      </button> -->
+    </div>
+  
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSourceMovements">
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>id</th>
+          <td mat-cell *matCellDef="let element">{{ element.id}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="product">
+          <th mat-header-cell *matHeaderCellDef>Producto</th>
+          <td mat-cell *matCellDef="let element">{{ element.product.name || 'no hay proveedor'}}</td>
+         </ng-container>
+  
+
+         <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+            <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="unit_price">
+            <th mat-header-cell *matHeaderCellDef>Precio unitario</th>
+            <td mat-cell *matCellDef="let element">${{ element.unit_price }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="subtotal_movements">
+            <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+            <td mat-cell *matCellDef="let element">${{ element.subtotal_movements }}</td>
+          </ng-container>
+
+
+             
+          <ng-container matColumnDef="iva">
+            <th mat-header-cell *matHeaderCellDef>Iva</th>
+            <td mat-cell *matCellDef="let element">${{ element.iva }}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="totalprice">
+            <th mat-header-cell *matHeaderCellDef>Precio Total</th>
+            <td mat-cell *matCellDef="let element">${{ element.totalprice }}</td>
+          </ng-container>
+
+        <ng-container matColumnDef="transfer_type">
+          <th mat-header-cell *matHeaderCellDef>Tipo de transferencia</th>
+          <td mat-cell *matCellDef="let element">{{ element.transfer_type }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="document_type">
+          <th mat-header-cell *matHeaderCellDef>Tipo de Documento</th>
+          <td mat-cell *matCellDef="let element">{{ element.document_type }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="document_number">
+            <th mat-header-cell *matHeaderCellDef> Número de Documento</th>
+            <td mat-cell *matCellDef="let element">{{ element.document_number }}</td>
+          </ng-container>
+    
+
+        <ng-container matColumnDef="movement_date">
+          <th mat-header-cell *matHeaderCellDef>Fecha de Ingreso</th>
+          <td mat-cell *matCellDef="let element">{{ element.movement_date }}</td>
+        </ng-container>
+  
+        <!-- <ng-container matColumnDef="product">
+          <th mat-header-cell *matHeaderCellDef>Producto</th>
+          <td mat-cell *matCellDef="let element">{{ element.product_name }}</td>
+        </ng-container>
+   -->
+        <!-- <ng-container matColumnDef="purchase_price">
+            <th mat-header-cell *matHeaderCellDef>Precio de Compra</th>
+            <td mat-cell *matCellDef="let element">${{ element.purchase_price}}</td>
+          </ng-container> -->
+
+  
+  
+  
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button color="primary" class="view-details-btn" matTooltip="Ver detalles" (click)="openDetailsModal(element)">
+              <fa-icon [icon]="faEye" class="eye-icon"></fa-icon>
+              <span class="btn-text">Ver</span>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+  
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+  
+  <div class="modal-overlay" *ngIf="selectedMovement">
+    <div class="modal-content">
+      <h2>
+        Detalles de la {{ selectedMovement.type === 'purchase' ? 'Compra' : 'Venta' }}
+        <button class="close-btn" (click)="closeModal()">×</button>
+      </h2>
+  
+      <div class="details">
+        <p>
+          <strong>{{selectedMovement?.details?.purchases?'Proveedor':'Cliente'}}</strong>
+          <span>{{ selectedMovement?.details?.purchases?.supplier_name || selectedMovement?.details?.sale?.customer.name }}</span>
+        </p>
+        <p>
+          <strong>Producto:</strong>
+          <span>{{ selectedMovement?.details?.purchases?.product_name || selectedMovement?.details?.sale?.product.name }}</span>
+        </p>
+        <p>
+          <strong>Tipo de transferencia:</strong>
+          <span>{{selectedMovement?.details?.purchases?.transfer_type || selectedMovement?.details?.sale?.transfer_type }}</span>
+        </p>
+        <p>
+          <strong>Tipo de Documento:</strong>
+          <span>{{ selectedMovement?.details?.purchases?.document_type || selectedMovement?.details?.sale?.document_type }}</span>
+        </p>
+        <p>
+          <strong>Número Documento:</strong>
+          <span>{{ selectedMovement?.details?.purchases?.document_number || selectedMovement?.details?.sale?.document_number }}</span>
+        </p>
+        <p>
+          <strong>Cantidad:</strong>
+          <span>{{ selectedMovement?.details?.purchases?.quantity || selectedMovement?.details?.sale?.quantity }}</span>
+        </p>
+        <p>
+          <strong>{{selectedMovement?.details?.purchases?'Precio de Compra':'Precio de Venta'}}</strong>
+          <span>{{ selectedMovement?.details?.purchases?.purchase_price || selectedMovement?.details?.sale?.sale_price }}</span>
+        </p>
+        <p>
+          <strong>Subtotal:</strong>
+          <span>{{ selectedMovement?.details?.purchases?.subtotal || selectedMovement?.details?.sale?.subtotal }}</span>
+        </p>
+        <p>
+          <strong>IVA:</strong>
+          <span>{{ selectedMovement?.details?.purchases?.iva || selectedMovement?.details?.sale?.iva }}</span>
+        </p>
+        <p>
+          <strong>Precio Total:</strong>
+          <span>{{ selectedMovement?.details?.purchases?.total_price || selectedMovement?.details?.sale?.total_price }}</span>
+        </p>
+        <p>
+          <strong>Fecha de registro:</strong>
+          <span>{{ selectedMovement?.details?.purchases?.entry_date || selectedMovement?.details?.sale?.sale_date }}</span>
+        </p>
+      </div>
+  
+      <div class="action-buttons">
+        <button class="close-action-btn" (click)="closeModal()">Cerrar</button>
+        <button class="print-btn">Imprimir</button>
+      </div>
+    </div>
+  </div>
+  
+  

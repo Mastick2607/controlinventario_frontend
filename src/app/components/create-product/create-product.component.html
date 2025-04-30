@@ -1,0 +1,51 @@
+<div class="product-form-container">
+    <h2>➕ Agregar Producto</h2>
+  
+    <form  [formGroup]="form" (ngSubmit)="addProduct()">
+      <!-- Nombre del Producto -->
+      <label for="name">Nombre del Producto:</label>
+      <input type="text" id="name" formControlName="name">
+      <small *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        ⚠ Nombre es obligatorio.
+      </small>
+
+      <!-- Descripción -->
+      <label for="description">Descripción:</label>
+      <textarea id="description" formControlName="description" required></textarea>
+      <small *ngIf="form.get('description')?.invalid && form.get('description')?.touched">
+        ⚠ Descripción es obligatoria.
+      </small>
+  
+      <!-- Precio -->
+      <label for="price">Precio:</label>
+      <input type="number" id="price"  formControlName="price" required>
+      <small *ngIf="form.get('price')?.invalid && form.get('price')?.touched">
+        ⚠ Precio mínimo de 1.
+      </small>
+      <!-- Stock -->
+      <label for="quantity">Stock:</label>
+      <input type="number" id="quantity" formControlName="quantity" required>
+      <small *ngIf="form.get('quantity')?.invalid && form.get('quantity')?.touched">
+        ⚠ La cantidad debe ser mayor a 0.
+      </small>
+
+
+      <!-- Seleccionar Categoría -->
+      <label for="category">Categoría:</label>
+      <select id="category"  formControlName="category_id" required>
+        <option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name}}
+        </option>
+      </select>
+      <small *ngIf="form.get('category_id')?.invalid && form.get('category_id')?.touched">
+        ⚠ Selecciona una categoría.
+      </small>
+  
+      <!-- Botón Agregar Producto -->
+      <button type="submit" class="add-product-btn" [disabled]="form.invalid">✅ Guardar Producto</button>
+  
+      <!-- Botón Volver -->
+      <button type="button" class="back-btn" (click)="goBack()">🔙 Volver</button>
+    </form>
+  </div>
+  

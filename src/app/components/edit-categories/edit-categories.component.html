@@ -1,0 +1,21 @@
+<div class="product-form-container">
+    <h2>✏️ Editar Producto</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="updateCategory()">
+      <!-- Código del Producto -->
+      <div class="form-group">
+        <label for="name">Nombre de la Categoria :</label>
+        <input type="text" id="name" formControlName="name">
+        <small *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+          ⚠ Nombre es obligatorio.
+        </small>
+      </div>
+     
+        
+      <!-- Botones -->
+      <div class="button-group">
+        <button type="button" class="back-btn" (click)="goBack()">🔙 Volver</button>
+        <button type="submit" class="update-product-btn" [disabled]="form.invalid">✅ Actualizar Producto</button>
+      </div>
+    </form>
+  </div>

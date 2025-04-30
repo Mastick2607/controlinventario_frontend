@@ -1,0 +1,101 @@
+<div class="product-form-container">
+    <h2>➕ Agregar Salida</h2>
+  
+    <form  [formGroup]="form" (ngSubmit)="addSales()">
+  
+
+      <label for="customer_id">Cliente:</label>
+      <select id="customer_id"  formControlName="customer_id" required>
+        <option *ngFor="let customer of customers" [value]="customer.id">
+          {{ customer.name}}
+        </option>
+      </select>
+      <small *ngIf="form.get('customer_id')?.invalid && form.get('customer_id')?.touched">
+        ⚠ Seleccione un Cliente.
+      </small>
+
+   
+  
+      <label for="transfer_type">Tipo de Transferencia:</label>
+      <select id="transfer_type"  formControlName="transfer_type" required>
+        <option value="Ingreso por Venta">
+        Ingreso por Venta
+        </option>
+      </select>
+      <small *ngIf="form.get('transfer_type')?.invalid && form.get('transfer_type')?.touched">
+        ⚠ Seleccione el Tipo de Transferencia.
+      </small>
+      
+
+      <label for="document_type">Tipo de Documento:</label>
+      <select id="document_type"  formControlName="document_type" required>
+        <option value="Factura de Venta Electronica ">
+         Factura de Venta Electronica 
+        </option>
+      </select>
+      <small *ngIf="form.get('document_type')?.invalid && form.get('document_type')?.touched">
+        ⚠ Seleccione el Tipo de Documento.
+      </small>
+      
+      <label for="document_number">Número de Documento:</label>
+      <input type="number" id="document_number" formControlName="document_number" required>
+      <small *ngIf="form.get('document_number')?.invalid && form.get('document_number')?.touched">
+        ⚠ Número de Documento es obligatorio
+      </small>
+
+
+      <label for="sale_date">Fecha de Salida</label>
+      <input type="date" id="sale_date" formControlName="sale_date" required>
+      <small *ngIf="form.get('sale_date')?.invalid && form.get('sale_date')?.touched">
+        ⚠ Fecha de Salida es obligatrio
+      </small>
+
+
+      <label for="product_id">Producto:</label>
+      <select id="product_id"  formControlName="product_id" required>
+        <option *ngFor="let product of products" [value]="product.id">
+          {{ product.name}}
+        </option>
+      </select>
+      <small *ngIf="form.get('product_id')?.invalid && form.get('product_id')?.touched">
+        ⚠ Seleccione un  producto.
+      </small>
+  
+      <label for="sale_price">Precio de Venta:</label>
+      <input type="number" id="sale_price" formControlName="sale_price" required  readonly>
+      <small *ngIf="form.get('sale_price')?.invalid && form.get('sale_price')?.touched">
+        ⚠ Precio de Venta es obligatario
+      </small>
+
+      <label for="quantity">Cantidad:</label>
+      <input type="number" id="quantity" formControlName="quantity" required>
+      <small *ngIf="form.get('quantity')?.invalid && form.get('quantity')?.touched">
+        ⚠ Cantidad es obligatoria
+      </small>
+
+
+      <label for="subtotal">Subtotal</label>
+      <input type="number" id="subtotal" formControlName="subtotal"  readonly>
+      <!-- <small *ngIf="form.get('subtotal')?.invalid && form.get('subtotal')?.touched">
+        ⚠ subtotal obligatorio
+      </small> -->
+
+      <label for="iva">Iva:</label>
+      <input type="number" id="iva" formControlName="iva"  readonly>
+      <!-- <small *ngIf="form.get('iva')?.invalid && form.get('iva')?.touched">
+        ⚠ iva es obligatoria
+      </small> -->
+
+      <label for="total_price">Precio Total:</label>
+      <input type="number" id="total_price" formControlName="total_price"  readonly>
+      <!-- <small *ngIf="form.get('total_price')?.invalid && form.get('total_price')?.touched">
+        ⚠ Precio Total es obligatorio
+      </small> -->
+     
+      <button type="submit" class="add-product-btn" [disabled]="form.invalid">✅ Registrar Ingreso</button>
+  
+      <!-- Botón Volver -->
+      <button type="button" class="back-btn" (click)="goBack()">🔙 Volver</button>
+    </form>
+  </div>
+  

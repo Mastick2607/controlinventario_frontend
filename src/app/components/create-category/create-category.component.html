@@ -1,0 +1,20 @@
+<div class="product-form-container">
+    <h2>➕ Agregar Categoria</h2>
+  
+    <form  [formGroup]="form" (ngSubmit)="addCategory()">
+      <!-- Nombre del Producto -->
+      <label for="name">Nombre de la Categoria:</label>
+      <input type="text" id="name" formControlName="name">
+      <small *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        ⚠ Nombre es obligatorio.
+      </small>
+
+
+      <!-- Botón Agregar Producto -->
+      <button type="submit" class="add-product-btn" [disabled]="form.invalid">✅ Guardar Producto</button>
+  
+      <!-- Botón Volver -->
+      <button type="button" class="back-btn" (click)="goBack()">🔙 Volver</button>
+    </form>
+  </div>
+  

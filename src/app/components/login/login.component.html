@@ -1,0 +1,51 @@
+<div class="login-page">
+  <div class="login-container">
+    <div class="illustration-side">
+      <div class="illustration">
+        <img src="assets/img/logistico.png" alt="Login illustration">
+      </div>
+    </div>
+    
+    <div class="form-side">
+      <div class="avatar-container">
+        <div class="avatar">
+          <img src="assets/img/empresario.png" alt="User avatar">
+        </div>
+      </div>
+      
+      <h1>Bienvenido</h1>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="form-group">
+          <label for="email">usuario:</label>
+          <div class="input-container">
+            <fa-icon [icon]="faUser"></fa-icon>
+            <input type="email" id="email" formControlName="email" placeholder="Ingrese su correo" />
+          </div>
+          <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Email inválido
+          </small>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">contraseña</label>
+          <div class="input-container">
+            <fa-icon [icon]="faLock"></fa-icon>
+            <input type="password" id="password" formControlName="password" placeholder="Ingrese su contraseña" />
+          </div>
+          <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            La contraseña debe tener al menos 6 caracteres
+          </small>
+          <div class="forgot-password-container">
+            <a href="#" class="forgot-password">¿Olvidó su contraseña?</a>
+          </div>
+        </div>
+        
+        <button type="submit" [disabled]="loginForm.invalid" class="login-button">LOGIN</button>
+        
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      </form>
+    </div>
+  </div>
+</div>
+

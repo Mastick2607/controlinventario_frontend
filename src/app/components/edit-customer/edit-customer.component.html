@@ -1,0 +1,47 @@
+<div class="product-form-container">
+    <h2>✏️ Editar Cliente</h2>
+  
+    <form [formGroup]="form" (ngSubmit)="updateCustomers()">
+      <!-- Código del Producto -->
+      <div class="form-group">
+        <label for="name">Nombre del Cliente:</label>
+        <input type="text" id="name" formControlName="name">
+        <small *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+          ⚠ Nombre es obligatorio.
+        </small>
+      </div>
+  
+      <div class="form-group">
+        <label for="phone">Telefono:</label>
+        <input type="text" id="phone" formControlName="phone">
+        <small *ngIf="form.get('phone')?.invalid && form.get('phone')?.touched">
+          ⚠ Telefono es obligatorio.
+        </small>
+      </div>
+  
+      <!-- Descripción -->
+      <div class="form-group">
+        <label for="email">Correo:</label>
+        <textarea id="email" formControlName="email" required></textarea>
+        <small *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+          ⚠ Correo es obligatorio.
+        </small>
+      </div>
+  
+      <!-- Precio -->
+      <div class="form-group">
+        <label for="address">Direccion:</label>
+        <input type="text" id="address" formControlName="address" required>
+        <small *ngIf="form.get('address')?.invalid && form.get('address')?.touched">
+          ⚠ Direccion es obligatorio.
+        </small>
+      </div>
+  
+   
+      <!-- Botones -->
+      <div class="button-group">
+        <button type="button" class="back-btn" (click)="goBack()">🔙 Volver</button>
+        <button type="submit" class="update-product-btn" [disabled]="form.invalid">✅ Actualizar Cliente</button>
+      </div>
+    </form>
+  </div>

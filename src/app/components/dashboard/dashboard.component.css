@@ -1,0 +1,102 @@
+/* Estilos globales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.dashboard-container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Tarjetas de estadísticas */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.card1 {
+    flex: 1;
+    padding: 15px;
+    background: #ff9100;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.card2 {
+    flex: 1;
+    padding: 15px;
+    background: #48ff00;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.card3 {
+    flex: 1;
+    padding: 15px;
+    background: #007bff;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+/* Secciones de tablas */
+.section {
+    margin-top: 20px;
+}
+
+h2 {
+    background: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #007bff;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #007bff;
+    color: #fff;
+}
+
+td {
+    background: #f9f9f9;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .stats {
+        flex-direction: column;
+    }
+}

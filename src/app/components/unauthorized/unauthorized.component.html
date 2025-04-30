@@ -1,0 +1,28 @@
+<div class="unauthorized-container">
+    <div class="unauthorized-card">
+      <div class="icon-container">
+        <i [class]="'fas ' + faExclamationTriangle"></i>
+      </div>
+      
+      <h1>Acceso No Autorizado</h1>
+      
+      <div class="message">
+        <p>Lo sentimos, no tienes permisos para acceder a esta página.</p>
+        <p>Por favor, contacta a soporte si crees que esto es un error.</p>
+      </div>
+      
+      <div class="actions">
+        <button class="btn-back" (click)="goBack()">
+          <i [class]="'fas ' + faArrowLeft"></i>
+          Volver atrás
+        </button>
+        
+        <button class="btn-home" routerLink="/dashboard">
+          <i [class]="'fas ' + faHome"></i>
+          Ir al Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  

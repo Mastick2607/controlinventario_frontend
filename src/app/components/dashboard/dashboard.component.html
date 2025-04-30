@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- <link rel="stylesheet" href="dashboard.css"> -->
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <!-- Título -->
+        <h1>📊 Dashboard</h1>
+
+        <!-- Tarjetas de resumen -->
+        <div class="stats">
+            <div class="card1">🔹 Total de Ventas: <span>{{TotalSales}}</span></div>
+            <div class="card2">🔹 Total Ingresos: <span>{{TotalRevenue}}</span></div>
+            <div class="card3">🔹 Productos en Stock: <span>{{Totalstock}}</span></div>
+        </div>
+
+        <!-- Últimas Ventas -->
+        <div class="section">
+            <h2>🛒 Últimas Ventas</h2>
+            
+            <div style="width: 100%; height: 400px;">
+              <canvas id="chart"></canvas>
+            </div>
+
+            
+            <!-- <table mat-table [dataSource]="dataSourceSales">
+              
+               
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+            
+           
+                <ng-container matColumnDef="Producto">
+                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                  <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="Cantidad">
+                  <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                  <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                </ng-container>
+
+               
+                <ng-container matColumnDef="Total">
+                  <th mat-header-cell *matHeaderCellDef>Total </th>
+                  <td mat-cell *matCellDef="let element"> ${{element.total_price}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="Acciones">
+                  <th mat-header-cell *matHeaderCellDef> Acciones 📄</th>
+                  <td mat-cell *matCellDef="let element" (click)="mostrarDetalle(element.id)" >🔍</td>
+                </ng-container>
+                
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsSales"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsSales;"></tr>
+              </table> -->
+            
+              <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                             showFirstLastButtons
+                             aria-label="Select page of periodic elements">
+              </mat-paginator> -->
+            <!-- <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>📄</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Laptop HP</td>
+                        <td>2</td>
+                        <td>$2000</td>
+                        <td>🔍</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Teclado</td>
+                        <td>5</td>
+                        <td>$250</td>
+                        <td>🔍</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Monitor</td>
+                        <td>1</td>
+                        <td>$300</td>
+                        <td>🔍</td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </div>
+<br><br>
+        <!-- Productos con Bajo Stock -->
+        <div class="section">
+            <h2>📦 Productos con Bajo Stock</h2>
+
+            <div style="width: 80%; margin: auto;">
+              <canvas baseChart
+                [data]="lineChartData"
+                [options]="lineChartOptions"
+                chartType="line">
+              </canvas>
+            </div>
+
+          <!-- <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+              
+               
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                  </ng-container>
+              
+              
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef> descripcion </th>
+                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                  </ng-container>
+
+                
+                  <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+                    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                  </ng-container>
+              
+                                  <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef> precio </th>
+                    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="category_id">
+                    <th mat-header-cell *matHeaderCellDef> Categoria </th>
+                    <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+                  </ng-container>
+              
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                               showFirstLastButtons
+                               aria-label="Select page of periodic elements">
+                </mat-paginator>
+              </div> -->
+              
+            <!-- <h2>📦 Productos con Bajo Stock</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Producto</th>
+                        <th>Stock Disponible</th>
+                        <th>📄</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Mouse</td>
+                        <td>2</td>
+                        <td>🔍</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Teclado</td>
+                        <td>5</td>
+                        <td>🔍</td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </div>
+
+    </div>
+
+</body>
+</html>

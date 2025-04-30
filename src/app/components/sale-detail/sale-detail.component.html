@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Venta</title>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h2>📄 Detalle de Venta</h2>
+        </header>
+        <div *ngIf="sale; else noData">
+        <section class="sale-info">
+            <h3>Información de la Venta</h3>
+            
+            <div class="info-grid">
+                <div><strong>ID Venta:</strong>{{sale.id}}</div>
+                <div><strong>Fecha:</strong> 2025-02-06</div>
+                <div><strong>Total:</strong>${{sale.total_price}}</div>
+                <div><strong>Cliente:</strong> {{sale.product_id}}</div>
+         
+        </div>
+        </section>
+     
+        <section class="product-list">
+            <h3>Productos Comprados</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Codigo Producto</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{sale.id}}</td>
+                        <td>{{sale.product.sku}}</td>
+                        <td>{{sale.product.name}}</td>
+                        <td>{{sale.quantity}}</td>
+                        <td>${{sale.product.price}}</td>
+                        <td>${{sale.total_price}}</td>
+                    </tr>
+                 
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <ng-template #noData>
+        <p class="error-message">No se encontró información de la venta.</p>
+      </ng-template>
+        <footer>
+            <button class="btn back" (click)="goToDashboard()">🔙 Volver</button>
+            <button class="btn download">⬇️ Descargar Factura</button>
+        </footer>
+    </div>
+</body>
+</html>

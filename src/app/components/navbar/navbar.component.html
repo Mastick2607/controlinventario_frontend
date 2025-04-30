@@ -1,0 +1,97 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <!--  Botón para expandir/contraer -->
+  <button class="toggle-btn" (click)="toggleSidebar()">
+    <fa-icon [icon]="isCollapsed ? faChevronRight : faChevronLeft"></fa-icon>
+  </button>
+
+  <!-- Menú de navegación -->
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/dashboard" title="Dashboard">
+        <fa-icon [icon]="faHome"></fa-icon>
+        <span *ngIf="!isCollapsed">Dashboard</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/products" title="Productos">
+        <fa-icon [icon]="faBox"></fa-icon>
+        <span *ngIf="!isCollapsed">Productos</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/categories" title="categorias">
+        <fa-icon [icon]="faTags"></fa-icon>
+        <span *ngIf="!isCollapsed">Categorias</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/suppliers" title="Proveedor">
+        <fa-icon [icon]="faUserTie"></fa-icon>
+        <span *ngIf="!isCollapsed">Proveedor</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/customers" title="Cliente">
+        <fa-icon [icon]="faHandshake"></fa-icon>
+        <span *ngIf="!isCollapsed">Cliente</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/purchases" title="Registro de Ingreso">
+        <fa-icon [icon]="faShoppingCart"></fa-icon>
+        <span *ngIf="!isCollapsed">Registro de Ingreso</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/sales" title="Registro de Salida">
+        <fa-icon [icon]="faMoneyBillWave"></fa-icon>
+        <span *ngIf="!isCollapsed">Registro de Salida</span>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/movements" title="Registro de Salida">
+        <fa-icon [icon]="faListAlt"></fa-icon>
+        <span *ngIf="!isCollapsed">Movimientos</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Navbar superior -->
+<div class="top-navbar">
+  <div class="navbar-content">
+    <div class="navbar-title">
+      <h1>Sistema de Inventario</h1>
+    </div>
+    
+    <div class="user-profile" (click)="toggleUserMenu()" (clickOutside)="closeUserMenu()">
+      <div class="user-avatar">
+        <img src="assets/img/perfil.png" alt="Avatar de usuario">
+      </div>
+      <div class="user-info" *ngIf="!isCollapsed">
+        <span class="user-name">{{ currentUser?.name }}</span>
+        <span class="user-email">{{ currentUser?.email }}</span>
+      </div>
+      <i [class]="'fas ' + (showUserMenu ? faChevronUp : faChevronDown)" *ngIf="!isCollapsed"></i>
+      
+      <!-- Menú desplegable del usuario -->
+      <div class="user-dropdown" *ngIf="showUserMenu">
+        <a routerLink="/profile">
+          <i [class]="'fas ' + faUser"></i>
+          Perfil
+        </a>
+        <a (click)="logout()">
+          <i [class]="'fas ' + faSignOutAlt"></i>
+          Desconectar
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
