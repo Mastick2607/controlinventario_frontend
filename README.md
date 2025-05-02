@@ -1,5 +1,5 @@
 
-# Frontend - CryptoInvestment
+# Frontend - Crontrol de Inventario
 
 ## 📋 Descripción
 
