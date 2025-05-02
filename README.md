@@ -1,27 +1,31 @@
-# ControlInventario
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
+# Frontend - CryptoInvestment
 
-## Development server
+## 📋 Descripción
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este es el frontend del Sistema de Control de Inventario, desarrollado en Angular 17 utilizando arquitectura standalone components. El proyecto está diseñado para consumir una API RESTful construida en Laravel, y permite la gestión de productos, categorías, clientes, proveedores, ventas y compras.
 
-## Code scaffolding
+## 🚀 Instalación
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clonar el repositorio
 
-## Build
+```bash
+  git clone https://github.com/Mastick2607/controlinventario_frontend.git
+  cd controlinventario_frontend
+  code . //para abrir el proyecto
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Instalar dependencias
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+ npm i
+```
+3. Arrancar el servidor
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+ng serve
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Para ver el proyecto estará disponible en la ruta: http://localhost:4200/
